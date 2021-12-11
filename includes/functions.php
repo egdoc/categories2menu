@@ -1,7 +1,6 @@
 <?php
-require_once '../../../wp-load.php';
 
-function filter_valid_categories($categories) {
+function categories2menu_filter_valid_categories($categories) {
 	$valid_categories = array();
 
 	$parent_product_categories = get_categories(
@@ -23,7 +22,7 @@ function filter_valid_categories($categories) {
 }
 
 
-function recursive_category_tree( $menu_id, $category, $menu_item_parent_id = 0 ) {
+function categories2menu_recursive_category_tree( $menu_id, $category, $menu_item_parent_id = 0 ) {
 	$item_db_id = wp_update_nav_menu_item(
 		$menu_id,
 		0,
@@ -50,6 +49,6 @@ function recursive_category_tree( $menu_id, $category, $menu_item_parent_id = 0 
 	);
 
 	foreach ( $children as $child ) {
-		recursive_category_tree( $menu_id, $child, $item_db_id );
+		categories2menu_recursive_category_tree( $menu_id, $child, $item_db_id );
 	}
 }
